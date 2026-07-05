@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="en"><head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CHAK Framework Simulator</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        @keyframes pulse-glow {
+
+            0%, 100% { opacity: 0.3; }
+
+            50% { opacity: 0.9; }
+
+        }
+
+        .pipeline-active {
+
+            animation: pulse-glow 1.5s infinite;
+
+        }
+
+    </style></head><body class="bg-slate-900 text-slate-100 min-h-screen font-sans flex flex-col">
+
+
+
+    <header class="bg-slate-950 border-b border-slate-800 p-4 shadow-md">
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+
+            <div>
+
+                <h1 class="text-xl font-bold tracking-tight text-emerald-400">CHAK: Civic Heritage Awareness Kiosk</h1>
+
+                <p class="text-xs text-slate-400">Distributed Mixed-Reality Framework for Legislative History | PhD Research Simulator</p>
+
+            </div>
+
+            <div class="bg-slate-800 px-3 py-1 rounded text-xs font-mono border border-slate-700 text-slate-300">
+
+                Methodology: User-Centric Prototyping (UCP)
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        
+
+        <section class="lg:col-span-5 flex flex-col bg-slate-950 border border-slate-800 rounded-xl p-5 shadow-xl">
+
+            <div class="mb-4">
+
+                <span class="text-xs font-semibold tracking-wider uppercase text-emerald-500 bg-emerald-950/50 px-2 py-1 rounded border border-emerald-900">
+
+                    Input Space
+
+                </span>
+
+                <h2 class="text-lg font-bold mt-2">3D-Haptic Map Interface</h2>
+
+                <p class="text-xs text-slate-400">Simulating physical capacitive touch triggers across Kerala regions.</p>
+
+            </div>
+
+
+
+            <div class="flex-1 flex flex-col justify-center gap-3 my-2" id="region-selector">
+
+                <button onclick="triggerRegion('tvm')" id="btn-tvm" class="region-btn w-full p-4 text-left rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-emerald-500 transition-all duration-200 flex justify-between items-center group">
+
+                    <div>
+
+                        <div class="font-bold text-slate-200 group-hover:text-emerald-400">Thiruvananthapuram Region</div>
+
+                        <div class="text-xs text-slate-400">South Kerala • Core Legislative Hub</div>
+
+                    </div>
+
+                    <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400 border border-slate-700 group-hover:border-emerald-500">Node 01</span>
+
+                </button>
+
+
+
+                <button onclick="triggerRegion('ekm')" id="btn-ekm" class="region-btn w-full p-4 text-left rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-emerald-500 transition-all duration-200 flex justify-between items-center group">
+
+                    <div>
+
+                        <div class="font-bold text-slate-200 group-hover:text-emerald-400">Ernakulam Region</div>
+
+                        <div class="text-xs text-slate-400">Central Kerala • Coastal & Commercial</div>
+
+                    </div>
+
+                    <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400 border border-slate-700 group-hover:border-emerald-500">Node 02</span>
+
+                </button>
+
+
+
+                <button onclick="triggerRegion('koz')" id="btn-koz" class="region-btn w-full p-4 text-left rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800/80 hover:border-emerald-500 transition-all duration-200 flex justify-between items-center group">
+
+                    <div>
+
+                        <div class="font-bold text-slate-200 group-hover:text-emerald-400">Kozhikode Region</div>
+
+                        <div class="text-xs text-slate-400">North Malabar • Historic Port Alliance</div>
+
+                    </div>
+
+                    <span class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400 border border-slate-700 group-hover:border-emerald-500">Node 03</span>
+
+                </button>
+
+            </div>
+
+
+
+            <div class="mt-4 pt-4 border-t border-slate-900 flex items-center justify-between text-xs font-mono">
+
+                <span class="text-slate-500">Middleware Pipeline:</span>
+
+                <span id="pipeline-status" class="text-slate-400 flex items-center gap-1.5">
+
+                    <span class="h-2 w-2 rounded-full bg-slate-600"></span> IDLE (Await Haptic Input)
+
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="lg:col-span-7 flex flex-col bg-slate-950 border border-slate-800 rounded-xl p-5 shadow-xl">
+
+            <div class="mb-4 flex justify-between items-start">
+
+                <div>
+
+                    <span class="text-xs font-semibold tracking-wider uppercase text-blue-500 bg-blue-950/50 px-2 py-1 rounded border border-blue-900">
+
+                        Output Space
+
+                    </span>
+
+                    <h2 class="text-lg font-bold mt-2">Democracy Dashboard</h2>
+
+                </div>
+
+                <div class="text-right">
+
+                    <span class="text-[10px] bg-slate-900 px-2 py-1 rounded font-mono text-slate-400 border border-slate-800 block">
+
+                        Source: Sabha TV MAM Server
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div id="dashboard-content" class="flex-1 flex flex-col justify-center items-center text-center p-8 bg-slate-900/30 rounded-lg border border-dashed border-slate-800 transition-all duration-300">
+
+                <div class="p-4 rounded-full bg-slate-900 text-slate-600 mb-3 border border-slate-800">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+
+                    </svg>
+
+                </div>
+
+                <h3 class="text-slate-400 font-medium">No Spatial Context Selected</h3>
+
+                <p class="text-xs text-slate-500 max-w-sm mt-1">Touch a physical constituency node on the left input space map to trigger real-time metadata retrieval pipelines.</p>
+
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+
+
+    <footer class="bg-slate-950 border-t border-slate-800 text-center py-3 text-[11px] text-slate-500 font-mono">
+
+        CHAK Distributed Prototype Architecture • Evaluated Fact Retention Increase: +40%
+
+    </footer>
+
+
+
+    <script>
+
+        // Mock Database Syncing with Sabha TV Media Asset Management (MAM) API
+
+        const dataset = {
+
+            tvm: {
+
+                title: "Thiruvananthapuram Central",
+
+                history: "Serving as the operational heart of Kerala's democratic framework since 1888 (Sri Mulam Popular Assembly). It pioneered early universal adult franchise testing models in princely states.",
+
+                lineage: ["K. Karunakaran (1980s Legacy)", "Oommen Chandy (Strategic Deployments)", "V. S. Sivakumar (Modern Structural Era)"],
+
+                metricLabel: "Historical Voter Turnout Avg",
+
+                metricVal: "76.4%",
+
+                videoClip: "STV-MAM_TVM-1888_REV04.mp4"
+
+            },
+
+            ekm: {
+
+                title: "Ernakulam District Alliance",
+
+                history: "Historically crucial in balancing maritime trade policies and labor union legislations. The legislative records show intense debates on port authority frameworks throughout the 1960s and 70s.",
+
+                lineage: ["T. K. Ramakrishnan", "K. J. Herschel", "Prof. K. V. Thomas"],
+
+                metricLabel: "Archival Media Metadata Density",
+
+                metricVal: "92.8 Lines/Min",
+
+                videoClip: "STV-MAM_EKM-COASTAL-1972.mp4"
+
+            },
+
+            koz: {
+
+                title: "Kozhikode North & Historic Constituencies",
+
+                history: "The epicenter of northern democratic decentralized planning strategies. Archives yield vital records regarding the Malabar District Board transitions into the unified Kerala Legislature.",
+
+                lineage: ["C. H. Mohammed Koya (Former CM)", "M. Kamalam", "A. Pradeepkumar"],
+
+                metricLabel: "Civic Engagement Literacy Score",
+
+                metricVal: "96.2%",
+
+                videoClip: "STV-MAM_KOZ-MALABAR-1957.mp4"
+
+            }
+
+        };
+
+
+
+        function triggerRegion(regionId) {
+
+            const data = dataset[regionId];
+
+            const pipelineStatus = document.getElementById('pipeline-status');
+
+            const dashboard = document.getElementById('dashboard-content');
+
+            
+
+            // 1. UI Feedback: Highlight active input button
+
+            document.querySelectorAll('.region-btn').forEach(btn => {
+
+                btn.classList.remove('border-emerald-500', 'bg-emerald-950/20');
+
+            });
+
+            document.getElementById(`btn-${regionId}`).classList.add('border-emerald-500', 'bg-emerald-950/20');
+
+
+
+            // 2. Simulate Middleware API Fetch Pipeline
+
+            pipelineStatus.innerHTML = `<span class="h-2 w-2 rounded-full bg-blue-500 pipeline-active"></span> FETCHING FROM SABHA TV MAM...`;
+
+            pipelineStatus.className = "text-blue-400 flex items-center gap-1.5 font-mono";
+
+
+
+            // 3. Render High-fidelity Output into the Dashboard Space (Simulating instant kiosk response)
+
+            setTimeout(() => {
+
+                pipelineStatus.innerHTML = `<span class="h-2 w-2 rounded-full bg-emerald-500"></span> SYNCED (Data Asset Rendered)`;
+
+                pipelineStatus.className = "text-emerald-400 flex items-center gap-1.5 font-mono";
+
+
+
+                dashboard.className = "flex-1 flex flex-col justify-between text-left p-0 bg-transparent rounded-none border-none transition-all duration-200";
+
+                
+
+                dashboard.innerHTML = `
+
+                    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl mb-4">
+
+                        <div class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 font-mono mb-1">■ One-Minute History Brief</div>
+
+                        <h3 class="text-xl font-bold text-slate-100">${data.title}</h3>
+
+                        <p class="text-sm text-slate-300 mt-2 leading-relaxed">${data.history}</p>
+
+                    </div>
+
+
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col">
+
+                            <div class="text-[10px] uppercase font-bold tracking-wider text-blue-400 font-mono mb-2">📋 Notable Legislative Lineage</div>
+
+                            <ul class="space-y-2 flex-1 flex flex-col justify-center">
+
+                                ${data.lineage.map(name => `
+
+                                    <li class="text-xs bg-slate-950 p-2 rounded border border-slate-800/80 flex items-center gap-2">
+
+                                        <span class="text-emerald-500">✔</span> ${name}
+
+                                    </li>
+
+                                `).join('')}
+
+                            </ul>
+
+                        </div>
+
+
+
+                        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col justify-between gap-4">
+
+                            <div class="bg-slate-950 rounded-lg aspect-video border border-slate-800 flex flex-col items-center justify-center relative overflow-hidden group">
+
+                                <div class="absolute inset-0 bg-emerald-500/5 opacity-10 pointer-events-none"></div>
+
+                                <div class="p-2.5 rounded-full bg-emerald-500/20 text-emerald-400 animate-pulse">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+
+                                </div>
+
+                                <span class="text-[10px] font-mono text-slate-500 mt-2 block">${data.videoClip}</span>
+
+                            </div>
+
+
+
+                            <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 flex justify-between items-center">
+
+                                <span class="text-xs text-slate-400">${data.metricLabel}</span>
+
+                                <span class="text-sm font-mono font-bold text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-900">${data.metricVal}</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }, 350); // Fast 350ms simulation delay representing modern local network pipelines
+
+        }
+
+    </script></body></html> convert this as https file
